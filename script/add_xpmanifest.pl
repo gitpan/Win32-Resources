@@ -4,7 +4,7 @@ use strict;
 use Win32::Resources::Update;
 
 unless ($ARGV[1]) {
-	print STDERR "Usage add_xpmanifest.pl file.exe description\n";
+	print STDERR "Usage: add_xpmanifest.pl file.exe description\n";
 	exit(0);
 }
 

@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Win32::Resources;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub new {
 	my $proto = shift;
@@ -83,12 +83,29 @@ sub setXPStyleOff {
 sub setXPStyleOn {
 	my ($self, $desc) = @_;
 
-	my $data = qq|<?xml version="1.0" encoding="UTF-8" standalone="yes"?><assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-<assemblyIdentity processorArchitecture="x86" version="5.1.0.0" type="win32" name="Controls"/>
-<description>$desc</description>
-<dependency><dependentAssembly>
-<assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" publicKeyToken="6595b64144ccf1df" language="*" processorArchitecture="x86"/>
-</dependentAssembly></dependency></assembly>|;
+	my $data = qq|<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+      <assemblyIdentity
+          processorArchitecture="x86"
+          version="5.1.0.0"
+          type="win32"
+          name="$desc"
+      />
+      <description>$desc</description>
+      <dependency>
+          <dependentAssembly>
+              <assemblyIdentity
+                  type="win32"
+                  name="Microsoft.Windows.Common-Controls"        
+                  version="6.0.0.0"
+                  publicKeyToken="6595b64144ccf1df"
+                  language="*"
+                  processorArchitecture="x86"
+          />
+      </dependentAssembly>
+      </dependency>
+  </assembly>
+|;
 
 	return $self->updateResource(
 		path => '24/1/1033',

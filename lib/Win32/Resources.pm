@@ -13,7 +13,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw(
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('Win32::Resources', $VERSION);
@@ -56,6 +56,16 @@ sub _check_param {
 
 	$param->{name} = uc($param->{name});
 	$param->{type} = uc($param->{type});
+
+	if ($param->{name} =~ /^\d+$/) {
+		$param->{name} = int($param->{name});
+	}
+	if ($param->{type} =~ /^\d+$/) {
+		$param->{type} = int($param->{type});
+	}
+	if (defined($param->{language}) and ($param->{language} =~ /^\d+$/)) {
+		$param->{language} = int($param->{language});
+	}
 
 	return $param;
 }

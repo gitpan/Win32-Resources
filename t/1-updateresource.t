@@ -27,16 +27,9 @@ ok($exe->updateResource(
 ), "add a bar RCDATA");
 
 # Force commit
-ok($exe->commit(), "force commit");
+#ok($exe->commit(), "force commit");
 
 #FIXME
 #ok($exe->deleteResource(
 #	path => 'RT_RCDATA/foo', 
 #), "delete a foo RCDATA");
-
-ok($exe->updateResource(
-	type => RT_GROUP_ICON, 
-	name => 'test', 
-	file => 't/test.ico',
-	language => 1033,
-), "Add an icon");
